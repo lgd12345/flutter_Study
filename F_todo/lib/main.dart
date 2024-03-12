@@ -72,6 +72,48 @@ class _MyHomePageState extends State<MyHomePage> {
     // });
   }
 
+  void _editlist(int index) {
+    setState(() {
+      todoList[index] = input;
+      input = '';
+    });
+  }
+
+  void _editTodo(int index) {
+    TextEditingController controller = TextEditingController(text: todoList[index]);
+    //초기값
+    input = todoList[index];
+    
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: const Text('적어라!'),
+              content: TextField(
+                  controller: controller,
+                  onChanged: (String value) {
+                    input = value;
+                    print("안녕");
+              }),
+              actions: <Widget>[
+                TextButton(
+                    onPressed: () {
+                      //현재 화면 닫고 이전화면이동
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('취소')),
+
+                TextButton(
+                    onPressed: () {
+                      _editlist(index);
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('수정'))
+              ]);
+        });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,14 +132,41 @@ class _MyHomePageState extends State<MyHomePage> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
             child: ListTile(
                 title: Text(todoList[index]),
-                trailing: IconButton(
-                    icon: Icon(Icons.delete, color: Colors.red),
-                  onPressed: () {
-                    setState(() {
-                      todoList.removeAt(index);
-                    });
-                  },
-                )),
+
+                leading: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                    children: [
+                    SizedBox(width: 1)
+                     // Text(index.toString()),
+                    ],
+                ),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                        onPressed: () => _editTodo(index),
+                        icon: Icon(Icons.edit, color: Colors.blue)
+                    ),
+                    SizedBox(width: 2), //버튼 간 간격
+
+                    IconButton(
+                      icon: Icon(Icons.delete, color: Colors.red),
+                      onPressed: (){
+                        setState(() {
+                          todoList.removeAt(index);
+                        });
+                      },
+                    ),],
+                )
+                // trailing leading: IconButton(
+                //     icon: Icon(Icons.delete, color: Colors.red),
+                //   onPressed: () {
+                //     setState(() {
+                //       todoList.removeAt(index);
+                //     });
+                //   },
+                // )
+          ),
           ); //각 아이템은 카드로 되어있음
         },
       ),
