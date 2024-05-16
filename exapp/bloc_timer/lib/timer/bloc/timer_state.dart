@@ -5,6 +5,7 @@ sealed class TimerState extends Equatable {
   const TimerState(this.duration);
   final int duration;
 
+  @override
   List<Object> get props => [duration];
 }
 
@@ -13,21 +14,21 @@ final class TimerInitial extends TimerState {
   const TimerInitial(super.duration);
 
   @override
-  String toString() => 'TimerInitial { duration: $duration }';
+  String toString() => 'TimerInitial 초기화 부분인데 { duration: $duration }';
 }
-//지정된 기간부터 카운트다운 한다 (사용자가 일시중지, 재설정, 남은시간확인가능)
+//일시정지 버튼 눌렀다
 final class TimerRunPause extends TimerState {
   const TimerRunPause(super.duration);
 
   @override
-  String toString() => 'TimerRunPause { duration: $duration }';
+  String toString() => 'TimerRunPause 일시정지버튼누름 { duration: $duration }';
 }
 //남은시간동안 일시중지 (사용자가 타이머 재개, 타이머 재설정가능)
 final class TimerRunInProgress extends TimerState {
   const TimerRunInProgress(super.duration);
 
   @override
-  String toString() => 'TimerRunInProgress { duration: $duration }';
+  String toString() => 'TimerRunInProgress !!!! { duration: $duration }';
 }
 // 남은 지속시간이 '0' 완료됨 (타이머 재설정가능)
 final class TimerRunComplete extends TimerState {
