@@ -1,0 +1,26 @@
+<안드로이드 앱 배포하기>
+
+pubspec.yaml
+- version : ex) 1.1.7+25 => 1.1.8.+26
+
+터미널
+- flutter build appbundle 작성
+
+빌드 끝나면 배포
+
+플러터 프로젝트/build/app/outputs/bundle/release
+
+[Play Console]
+
+프로덕션
+새버전만들기
+업로드
+
+경고
+flutter 네이티브 디버그 
+- ./android/app/build/intermediates/merged_native_libs/release/out/lib에서
+arm64-v8a, armeabi-v7a, x86 파일 함께 압축 후 업로드
+
+App Bundle 탐색기/ 버전 확인 → / 다운로드 / 네이티브 디버그 기호 업로드
+
+프로덕션으로 다시 돌아가서 마저 올린다

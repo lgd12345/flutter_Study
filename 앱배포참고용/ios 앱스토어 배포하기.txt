@@ -1,0 +1,24 @@
+iOS 앱스토어 배포하기 
+
+Xcode 에서 signing & Capabilities 에서 자동 연결 All, Debug, Release, Profile 모두 확인해줌
+
+
+<아카이브 중에 인증서 문제로 오류날 때>
+
+인증서 문제 연결확인 - Xcode setting > Accounts < Manage Certificates < 확인해봄 없으면 추가(+)
+키 체인 접근 > 로그인 > 키, 인증서 확인하고 필요 없는 것 지운다 (잘못지우면 문제생김)
+
+인증서 확인할 때 apple Developer > Certificates, Identifiers & Profiles에서 해당인증서랑 날짜등등 매칭해서 확인해줌
+
+배포 전 
+안드로이드스튜디오 터미널에서 클린 -> 프로젝트 파일 - flutter clean
+Xcode에서 클린 Command+shift+K - clean
+
+안드로이드 스튜디오 빌드 - flutter build iOS -release
+완료 > open iOS/Runner.xcworkspace
+
+Xcode Device 선택 > Any iOS Device(arm64)선택 > Runner 클릭 > Edit Scheme...클릭 > Build Configuration을 디버그(Debug)에서 Release 로 바꿔줌 > product > Archive
+
+완료
+
+
